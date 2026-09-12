@@ -306,6 +306,7 @@ function Admin() {
 
                         <button
                             onClick={logout}
+                            flex
                             className=
                                 "admin-logout"
                         >
