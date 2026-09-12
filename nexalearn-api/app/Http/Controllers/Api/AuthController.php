@@ -91,11 +91,9 @@ class AuthController extends Controller
                 $user->password
             )
         ) {
-            throw ValidationException::withMessages([
-                'email' => [
-                    'Las credenciales son incorrectas.'
-                ],
-            ]);
+            return response()->json([
+                'message' => 'Las credenciales son incorrectas.'
+            ], 401);
         }
 
 
