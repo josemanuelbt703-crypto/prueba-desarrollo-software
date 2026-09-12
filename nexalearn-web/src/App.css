@@ -173,6 +173,47 @@ a {
     font-size: 1.25rem;
 }
 
+.categories-filter {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-bottom: 35px;
+}
+
+
+.category-button {
+    padding: 10px 18px;
+
+    border: 1px solid #ccd6db;
+
+    border-radius: 30px;
+
+    background: white;
+
+    color: #102f43;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.category-button:hover {
+    border-color: #20c997;
+}
+
+
+.category-button--active {
+    background: #20c997;
+
+    border-color: #20c997;
+
+    color: #102f43;
+}
 
 .footer {
     padding: 35px 0;
