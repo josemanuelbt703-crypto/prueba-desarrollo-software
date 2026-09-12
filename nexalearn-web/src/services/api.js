@@ -109,3 +109,148 @@ export async function logout(token) {
 
     return response.json();
 }
+
+export async function getCategories() {
+
+    const response = await fetch(
+        `${API_URL}/categories`,
+        {
+            headers: {
+                Accept: 'application/json',
+            },
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error(
+            'No se pudieron obtener las categorías'
+        );
+    }
+
+    return response.json();
+}
+
+
+export async function createCourse(
+    course,
+    token
+) {
+
+    const response = await fetch(
+        `${API_URL}/courses`,
+        {
+            method: 'POST',
+
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+
+                Authorization:
+                    `Bearer ${token}`,
+            },
+
+            body: JSON.stringify(course),
+        }
+    );
+
+
+    const data =
+        await response.json();
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            data.message ||
+            'No se pudo crear el curso'
+        );
+
+    }
+
+
+    return data;
+}
+
+
+export async function updateCourse(
+    id,
+    course,
+    token
+) {
+
+    const response = await fetch(
+        `${API_URL}/courses/${id}`,
+        {
+            method: 'PUT',
+
+            headers: {
+                'Content-Type':
+                    'application/json',
+
+                Accept:
+                    'application/json',
+
+                Authorization:
+                    `Bearer ${token}`,
+            },
+
+            body:
+                JSON.stringify(course),
+        }
+    );
+
+
+    const data =
+        await response.json();
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            data.message ||
+            'No se pudo actualizar el curso'
+        );
+
+    }
+
+
+    return data;
+}
+
+
+export async function deleteCourse(
+    id,
+    token
+) {
+
+    const response = await fetch(
+        `${API_URL}/courses/${id}`,
+        {
+            method: 'DELETE',
+
+            headers: {
+                Accept: 'application/json',
+
+                Authorization:
+                    `Bearer ${token}`,
+            },
+        }
+    );
+
+
+    const data =
+        await response.json();
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            data.message ||
+            'No se pudo eliminar el curso'
+        );
+
+    }
+
+
+    return data;
+}

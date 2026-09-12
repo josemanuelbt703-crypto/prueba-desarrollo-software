@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getCourses } from '../services/api';
 import CourseCard from '../components/CourseCard';
 import { useAuth } from '../context/AuthContext';
+import { Link } from 'react-router-dom';
 import '../App.css';
 
 function Home() {
@@ -10,7 +11,7 @@ function Home() {
 
     const [loading, setLoading] = useState(true);
 
-    const {user, logout} = useAuth();
+    const {user, logout, isAdmin} = useAuth();
 
     const [error, setError] = useState(null);
 
@@ -57,6 +58,13 @@ function Home() {
                         <a href="#courses">
                             Cursos
                         </a>
+
+                        {isAdmin && (
+                            <Link to="/admin">
+                                Administrar
+                            </Link>
+                        )}
+
                         {user ? (
                             <>
                                 <span style={{marginLeft:"20px"}}> 
