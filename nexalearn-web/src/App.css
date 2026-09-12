@@ -49,30 +49,56 @@ a {
 
 
 .hero {
-    padding: 100px 0;
+    width: 100%;
+    padding: 110px 0;
+
     background: #102f43;
     color: white;
 }
 
+.hero .container {
+    text-align: left;
+}
 
 .hero__tag {
     display: inline-block;
-    margin-bottom: 15px;
-    font-weight: bold;
-}
 
+    margin-bottom: 18px;
+
+    font-size: 1rem;
+    font-weight: 700;
+}
 
 .hero h2 {
-    max-width: 650px;
+    max-width: 720px;
+
     margin: 0;
-    font-size: clamp(2.3rem, 6vw, 4.5rem);
+
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.08;
 }
 
-
 .hero p {
-    max-width: 550px;
+    max-width: 600px;
+
     margin: 25px 0;
+
+    font-size: 1.05rem;
     line-height: 1.7;
+}
+
+.button {
+    display: inline-block;
+
+    padding: 14px 24px;
+
+    background: #20c997;
+
+    border-radius: 8px;
+
+    color: #102f43;
+
+    font-weight: 700;
 }
 
 
