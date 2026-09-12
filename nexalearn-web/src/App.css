@@ -332,6 +332,18 @@ a {
     border-color: #20c997;
 }
 
+.load-more {
+    margin-top: 40px;
+
+    text-align: center;
+}
+
+
+.load-more .button {
+    border: none;
+
+    cursor: pointer;
+}
 
 .login-button {
     width: 100%;

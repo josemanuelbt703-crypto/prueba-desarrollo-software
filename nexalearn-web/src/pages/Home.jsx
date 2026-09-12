@@ -17,6 +17,8 @@ function Home() {
 
     const {user, logout, isAdmin} = useAuth();
 
+    const [visibleCourses, setVisibleCourses] = useState(3);
+
     const [error, setError] = useState(null);
 
 
@@ -53,6 +55,12 @@ function Home() {
 
     }, []);
 
+    useEffect(() => {
+
+        setVisibleCourses(3);
+
+    }, [selectedCategory]);
+
     const filteredCourses = 
             selectedCategory === 'all' 
                 ? courses 
@@ -60,6 +68,12 @@ function Home() {
                     course =>
                         course.category_id === Number(selectedCategory)
                 );
+    
+    const displayedCourses =
+        filteredCourses.slice(
+            0,
+            visibleCourses
+        );
 
     return (
         <>
@@ -181,7 +195,7 @@ function Home() {
 
                         <div className="courses__grid">
 
-                            {filteredCourses.map(course => (
+                            {displayedCourses.map(course => (
 
                                 <CourseCard
                                     key={course.id}
@@ -191,6 +205,25 @@ function Home() {
                             ))}
 
                         </div>
+
+                        {visibleCourses < filteredCourses.length && (
+                                                
+                            <div className="load-more">
+                            
+                                <button
+                                    className="button"
+                                    onClick={() =>
+                                        setVisibleCourses(
+                                            visibleCourses + 3
+                                        )
+                                    }
+                                >
+                                    Cargar más
+                                </button>
+                                
+                            </div>
+                        
+                        )}
 
                     </div>
 
