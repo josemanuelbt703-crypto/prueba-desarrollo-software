@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -20,16 +21,16 @@ class DatabaseSeeder extends Seeder
         $web = Category::create([
             'name' => 'Desarrollo Web',
         ]);
-    
+
         $ai = Category::create([
             'name' => 'Inteligencia Artificial',
         ]);
-    
+
         $data = Category::create([
             'name' => 'Ciencia de Datos',
         ]);
-    
-    
+
+
         Course::create([
             'title' => 'React desde cero',
             'description' => 'Aprende los fundamentos de React y desarrolla interfaces modernas.',
@@ -37,7 +38,7 @@ class DatabaseSeeder extends Seeder
             'image' => 'https://placehold.co/600x400?text=React',
             'category_id' => $web->id,
         ]);
-    
+
         Course::create([
             'title' => 'Laravel API',
             'description' => 'Construye APIs REST utilizando Laravel.',
@@ -45,7 +46,7 @@ class DatabaseSeeder extends Seeder
             'image' => 'https://placehold.co/600x400?text=Laravel',
             'category_id' => $web->id,
         ]);
-    
+
         Course::create([
             'title' => 'Introducción a Inteligencia Artificial',
             'description' => 'Conoce los fundamentos y aplicaciones actuales de la IA.',
@@ -53,7 +54,7 @@ class DatabaseSeeder extends Seeder
             'image' => 'https://placehold.co/600x400?text=IA',
             'category_id' => $ai->id,
         ]);
-    
+
         Course::create([
             'title' => 'Machine Learning con Python',
             'description' => 'Construye modelos básicos de aprendizaje automático.',
@@ -61,7 +62,7 @@ class DatabaseSeeder extends Seeder
             'image' => 'https://placehold.co/600x400?text=Machine+Learning',
             'category_id' => $ai->id,
         ]);
-    
+
         Course::create([
             'title' => 'SQL para análisis de datos',
             'description' => 'Aprende consultas SQL orientadas al análisis de información.',
@@ -69,7 +70,7 @@ class DatabaseSeeder extends Seeder
             'image' => 'https://placehold.co/600x400?text=SQL',
             'category_id' => $data->id,
         ]);
-    
+
         Course::create([
             'title' => 'Python para Data Science',
             'description' => 'Analiza y transforma datos utilizando Python.',
@@ -77,5 +78,28 @@ class DatabaseSeeder extends Seeder
             'image' => 'https://placehold.co/600x400?text=Python',
             'category_id' => $data->id,
         ]);
+
+
+        User::updateOrCreate(
+            [
+                'email' => 'admin@nexalearn.com',
+            ],
+            [
+                'name' => 'Administrador',
+                'password' => Hash::make('Admin12345'),
+                'role' => 'admin',
+            ]
+        );
+
+        User::updateOrCreate(
+            [
+                'email' => 'demo@nexalearn.com',
+            ],
+            [
+                'name' => 'Usuario Demo',
+                'password' => Hash::make('User12345'),
+                'role' => 'user',
+            ]
+        );
     }
 }
