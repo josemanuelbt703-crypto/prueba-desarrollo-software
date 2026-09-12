@@ -63,3 +63,31 @@ Route::middleware('auth:sanctum')->group(function () {
     ]);
 
 });
+
+/*
+|--------------------------------------------------------------------------
+| Authenticated CRUD
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware([
+    'auth:sanctum',
+    'admin'
+])->group(function () {
+
+    Route::post('/courses', [
+        CourseController::class,
+        'store'
+    ]);
+
+    Route::put('/courses/{course}', [
+        CourseController::class,
+        'update'
+    ]);
+
+    Route::delete('/courses/{course}', [
+        CourseController::class,
+        'destroy'
+    ]);
+
+});
