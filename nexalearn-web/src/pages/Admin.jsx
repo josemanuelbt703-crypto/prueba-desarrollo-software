@@ -384,6 +384,8 @@ function Admin() {
                                 onChange={
                                     handleChange
                                 }
+                                minLength="3"
+                                maxLength="30"
                                 required
                             />
 
@@ -408,6 +410,8 @@ function Admin() {
                                 onChange={
                                     handleChange
                                 }
+                                minLength="10"
+                                maxLength="500"
                                 required
                             />
 
@@ -428,6 +432,7 @@ function Admin() {
                                 type="number"
                                 step="0.01"
                                 min="0"
+                                max="99999.99"
                                 value={
                                     form.price
                                 }

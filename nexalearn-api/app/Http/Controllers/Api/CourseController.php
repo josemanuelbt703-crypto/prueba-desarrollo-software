@@ -34,11 +34,38 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:150',
-            'description' => 'required|string',
-            'price' => 'required|numeric|min:0',
-            'image' => 'nullable|string|max:2048',
-            'category_id' => 'required|exists:categories,id',
+            'title' => [
+                'required',
+                'string',
+                'min:3',
+                'max:150',
+            ],
+
+            'description' => [
+                'required',
+                'string',
+                'min:10',
+                'max:2000',
+            ],
+
+            'price' => [
+                'required',
+                'numeric',
+                'min:0',
+                'max:99999.99',
+            ],
+
+            'image' => [
+                'nullable',
+                'url',
+                'max:2048',
+            ],
+
+            'category_id' => [
+                'required',
+                'integer',
+                'exists:categories,id',
+            ],
         ]);
 
         $course = Course::create($validated);
@@ -67,11 +94,42 @@ class CourseController extends Controller
     public function update(Request $request, Course $course)
     {
         $validated = $request->validate([
-            'title' => 'sometimes|required|string|max:150',
-            'description' => 'sometimes|required|string',
-            'price' => 'sometimes|required|numeric|min:0',
-            'image' => 'nullable|string|max:2048',
-            'category_id' => 'sometimes|required|exists:categories,id',
+            'title' => [
+                'sometimes',
+                'required',
+                'string',
+                'min:3',
+                'max:150',
+            ],
+        
+            'description' => [
+                'sometimes',
+                'required',
+                'string',
+                'min:10',
+                'max:2000',
+            ],
+        
+            'price' => [
+                'sometimes',
+                'required',
+                'numeric',
+                'min:0',
+                'max:99999.99',
+            ],
+        
+            'image' => [
+                'nullable',
+                'url',
+                'max:2048',
+            ],
+        
+            'category_id' => [
+                'sometimes',
+                'required',
+                'integer',
+                'exists:categories,id',
+            ],
         ]);
 
         $course->update($validated);
