@@ -1,3 +1,5 @@
+import CourseDetailsModal from '../components/CourseDetailsModal';
+
 import {
     useEffect,
     useState
@@ -30,6 +32,11 @@ const initialForm = {
 
 
 function Admin() {
+
+    const [
+        selectedCourse,
+        setSelectedCourse
+    ] = useState(null);
 
     const {
         user,
@@ -385,7 +392,7 @@ function Admin() {
                                     handleChange
                                 }
                                 minLength="3"
-                                maxLength="30"
+                                maxLength="50"
                                 required
                             />
 
@@ -411,7 +418,7 @@ function Admin() {
                                     handleChange
                                 }
                                 minLength="10"
-                                maxLength="500"
+                                maxLength="2000"
                                 required
                             />
 
@@ -543,10 +550,12 @@ function Admin() {
                             {editingId && (
 
                                 <button
+                                    className='admin-button admin-button--view'
                                     type="button"
                                     onClick={
                                         cancelEdit
                                     }
+                                    
                                 >
                                     Cancelar
                                 </button>
@@ -589,6 +598,10 @@ function Admin() {
                                     </th>
 
                                     <th>
+                                        Descripción
+                                    </th>
+
+                                    <th>
                                         Categoría
                                     </th>
 
@@ -623,6 +636,12 @@ function Admin() {
                                                     }
                                                 </td>
 
+                                                <td className="admin-actions">
+                                                    <button className="admin-button admin-button--view" onClick={() => setSelectedCourse(course)}>
+                                                        Ver
+                                                    </button>
+                                                </td>
+                                                   
                                                 <td>
                                                     {
                                                         course.category?.name
@@ -638,6 +657,7 @@ function Admin() {
                                                 <td>
 
                                                     <button
+                                                        className="admin-button admin-button--edit"
                                                         onClick={() =>
                                                             handleEdit(
                                                                 course
@@ -649,6 +669,7 @@ function Admin() {
 
 
                                                     <button
+                                                        className="admin-button admin-button--delete"
                                                         onClick={() =>
                                                             handleDelete(
                                                                 course
@@ -669,6 +690,13 @@ function Admin() {
                             </tbody>
 
                         </table>
+
+                         <CourseDetailsModal
+                            course={selectedCourse}
+                            onClose={() =>
+                                setSelectedCourse(null)
+                            }
+                        />
 
                     </div>
 

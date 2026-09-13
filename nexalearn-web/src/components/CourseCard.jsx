@@ -1,6 +1,24 @@
-function CourseCard({ course }) {
+function CourseCard({ course, onOpen }) {
+
+    const openCourse = () => {
+        onOpen(course);
+    };
+
     return (
-        <article className="course-card">
+        <article
+            className="course-card"
+            role="button"
+            tabIndex="0"
+            onClick={openCourse}
+            onKeyDown={(event) => {
+                if (
+                    event.key === 'Enter' ||
+                    event.key === ' '
+                ) {
+                    openCourse();
+                }
+            }}
+        >
 
             <img
                 className="course-card__image"
@@ -25,6 +43,10 @@ function CourseCard({ course }) {
                 <strong className="course-card__price">
                     ${course.price}
                 </strong>
+
+                <span className="course-card__more">
+                    Ver curso →
+                </span>
 
             </div>
 
